@@ -3,8 +3,8 @@ import 'firebase/auth';
 import { clientCredentials } from './client';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/checkuser`, {
-    method: 'POST',
+  fetch(`${clientCredentials.databaseURL}/checkuser/${uid}`, {
+    method: 'GET',
     body: JSON.stringify({
       uid,
     }),
@@ -18,7 +18,7 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/register`, {
+  fetch(`${clientCredentials.databaseURL}/users`, {
     method: 'POST',
     body: JSON.stringify(userInfo),
     headers: {
