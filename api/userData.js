@@ -25,4 +25,16 @@ const createUser = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getUserDetails, createUser };
+const createUserAndShelves = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users-and-shelves`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  }).then((r) => r.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export { getUserDetails, createUser, createUserAndShelves };

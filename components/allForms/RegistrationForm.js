@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
-import { createUser } from '../../api/userData';
+import { createUserAndShelves } from '../../api/userData';
 
 const initialState = {
   username: '',
@@ -35,7 +35,7 @@ function RegistrationForm({ userObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, uid: user.uid };
-    createUser(payload).then(router.reload);
+    createUserAndShelves(payload).then(router.reload);
   };
 
   return (
