@@ -2,17 +2,20 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useRouter } from 'next/router';
 import { registerUser } from '../utils/auth'; // Update with path to registerUser
 
-function RegisterForm({ user, updateUser }) {
+function RegisterForm({ user }) {
   const [formData, setFormData] = useState({
     bio: '',
     uid: user.uid,
   });
 
+  const router = useRouter();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formData).then(() => updateUser(user.uid));
+    registerUser(formData).then(() => router.push('/'));
   };
 
   return (
@@ -33,7 +36,6 @@ RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string.isRequired,
   }).isRequired,
-  updateUser: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;
