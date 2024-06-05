@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { getAllBooks } from '../../api/bookData';
+import { getRecentReleases } from '../../api/bookData';
 import BookCard from '../../components/cards/bookCard';
 
-export default function AllBooks() {
-  const [allBooks, setAllBooks] = useState([]);
+export default function RecentBooks() {
+  const [recentBooks, setRecentBooks] = useState([]);
 
   useEffect(() => {
-    getAllBooks().then(setAllBooks);
+    getRecentReleases().then(setRecentBooks);
   }, []);
 
   return (
     <>
       <div className="page-container">
-        <h1>Browse All Books</h1>
+        <h1>Recent Releases</h1>
         <div>
-          {allBooks.map((book) => (
+          {recentBooks.map((book) => (
             <BookCard key={book.id} bookObj={book} />
           ))}
         </div>
