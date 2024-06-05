@@ -37,7 +37,7 @@ const getSingleShelf = (shelfId) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((response) => response.json)
+  }).then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
