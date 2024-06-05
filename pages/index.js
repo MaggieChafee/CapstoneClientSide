@@ -7,11 +7,14 @@ import { getUserDetails } from '../api/userData';
 import RegistrationForm from '../components/allForms/RegistrationForm';
 import { getUsersShelves } from '../api/shelfData';
 import ProfileBookShelf from '../components/cards/profileBookShelf';
+import { getUsersReviews } from '../api/reviewData';
+import ReviewCard from '../components/cards/userReviewCard';
 
 function Home() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [userShelves, setUserShelves] = useState([]);
+  const [userReviews, setUserReviews] = useState([]);
   const { user } = useAuth();
 
   const userStatus = () => {
@@ -29,9 +32,14 @@ function Home() {
     getUsersShelves(user.id).then(setUserShelves);
   };
 
+  const reviews = () => {
+    getUsersReviews(user.id).then(setUserReviews);
+  };
+
   useEffect(() => {
     userStatus();
     bookShelves();
+    reviews();
   }, [user]);
 
   return (
@@ -48,6 +56,11 @@ function Home() {
           <div>
             {userShelves.map((shelf) => (
               <ProfileBookShelf key={shelf.id} bookShelfObj={shelf} />
+            ))}
+          </div>
+          <div>
+            {userReviews.map((review) => (
+              <ReviewCard key={review.id} reviewObj={review} />
             ))}
           </div>
         </div>
