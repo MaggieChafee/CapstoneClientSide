@@ -18,5 +18,9 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #FFDCD3;
+}
+
+.page-container {
+  margin: 5%;
 }

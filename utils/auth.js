@@ -5,16 +5,21 @@ import { clientCredentials } from './client';
 const checkUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/checkuser/${uid}`, {
     method: 'GET',
-    body: JSON.stringify({
-      uid,
-    }),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
-    .catch(reject);
+    .then((resp) => {
+      if (resp.status === 404) {
+        resolve({});
+      } else {
+        resolve(resp.json());
+      }
+    })
+    .catch((error) => {
+      reject(error);
+    });
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {

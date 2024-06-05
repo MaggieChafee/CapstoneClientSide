@@ -1,26 +1,73 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Image } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import { getUserDetails } from '../api/userData';
+import RegistrationForm from '../components/allForms/RegistrationForm';
+import { getUsersShelves } from '../api/shelfData';
+import ProfileBookShelf from '../components/cards/profileBookShelf';
+import { getUsersReviews } from '../api/reviewData';
+import ReviewCard from '../components/cards/userReviewCard';
 
 function Home() {
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
+  const [userShelves, setUserShelves] = useState([]);
+  const [userReviews, setUserReviews] = useState([]);
   const { user } = useAuth();
+
+  const userStatus = () => {
+    checkUser(user.uid).then((r) => {
+      if (r.id) {
+        setIsRegistered(true);
+        getUserDetails(user.id).then(setUserDetails);
+      } else {
+        setIsRegistered(false);
+      }
+    });
+  };
+
+  const bookShelves = () => {
+    getUsersShelves(user.id).then(setUserShelves);
+  };
+
+  const reviews = () => {
+    getUsersReviews(user.id).then(setUserReviews);
+  };
+
+  useEffect(() => {
+    userStatus();
+    bookShelves();
+    reviews();
+  }, [user]);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
-    </div>
+    <>
+      {isRegistered === false ? (<><RegistrationForm /></>) : (
+        <div
+          className="page-container"
+        >
+          <div>
+            <Image src={userDetails.imageUrl} alt="profile picture" />
+          </div>
+          <h1>Hello {userDetails.username}! </h1>
+          <p>Contact Info: {userDetails.email}</p>
+          <div>
+            {userShelves.map((shelf) => (
+              <ProfileBookShelf key={shelf.id} bookShelfObj={shelf} />
+            ))}
+          </div>
+          <div>
+            {userReviews.map((review) => (
+              <ReviewCard key={review.id} reviewObj={review} />
+            ))}
+          </div>
+        </div>
+      )}
+
+    </>
+
   );
 }
 
