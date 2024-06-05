@@ -9,7 +9,7 @@ const initialState = {
 
 function ProfileBookShelf({ bookShelfObj }) {
   return (
-    <div height="400">
+    <div style={{ height: '300px' }}>
       <h1>{bookShelfObj.name}</h1>
       <div>
         {bookShelfObj.bookInformation.map((bookInfo) => (
