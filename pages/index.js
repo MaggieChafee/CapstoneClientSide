@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { checkUser, signOut } from '../utils/auth';
+import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import { getUserDetails } from '../api/userData';
 import RegistrationForm from '../components/allForms/RegistrationForm';
+import { getUsersShelves } from '../api/shelfData';
+import ProfileBookShelf from '../components/cards/profileBookShelf';
 
 function Home() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [userShelves, setUserShelves] = useState([]);
   const { user } = useAuth();
 
   const userStatus = () => {
@@ -22,8 +25,13 @@ function Home() {
     });
   };
 
+  const bookShelves = () => {
+    getUsersShelves(user.id).then(setUserShelves);
+  };
+
   useEffect(() => {
     userStatus();
+    bookShelves();
   }, [user]);
 
   return (
@@ -37,10 +45,11 @@ function Home() {
           </div>
           <h1>Hello {userDetails.username}! </h1>
           <p>Contact Info: {userDetails.email}</p>
-          <p>Click the button below to logout!</p>
-          <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-            Sign Out
-          </Button>
+          <div>
+            {userShelves.map((shelf) => (
+              <ProfileBookShelf key={shelf.id} bookShelfObj={shelf} />
+            ))}
+          </div>
         </div>
       )}
 
