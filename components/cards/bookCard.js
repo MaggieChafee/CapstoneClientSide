@@ -21,7 +21,7 @@ function BookCard({ bookObj }) {
 
 BookCard.propTypes = {
   bookObj: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     title: PropTypes.string,
     imageUrl: PropTypes.string,
   }).isRequired,
