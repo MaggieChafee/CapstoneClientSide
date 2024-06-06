@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 function BookCard({ bookObj }) {
   return (
@@ -10,7 +11,9 @@ function BookCard({ bookObj }) {
       <Card.Img variant="top" src={bookObj.imageUrl} />
       <Card.Body>
         <Card.Title>{bookObj.title}</Card.Title>
-        <Button variant="primary">View</Button>
+        <Link href={`/books/${bookObj.id}`} passHref>
+          <Button variant="primary">View</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
@@ -18,7 +21,7 @@ function BookCard({ bookObj }) {
 
 BookCard.propTypes = {
   bookObj: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     title: PropTypes.string,
     imageUrl: PropTypes.string,
   }).isRequired,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import Link from 'next/link';
 
 const initialState = {
   name: '',
@@ -11,6 +12,9 @@ function ProfileBookShelf({ bookShelfObj }) {
   return (
     <div style={{ height: '300px' }}>
       <h1>{bookShelfObj.name}</h1>
+      <Link href={`/shelves/${bookShelfObj.id}`} passHref>
+        <Button>Show More</Button>
+      </Link>
       <div>
         {bookShelfObj.bookInformation.map((bookInfo) => (
           <Card key={bookInfo.bookId} style={{ width: '10rem' }}>
