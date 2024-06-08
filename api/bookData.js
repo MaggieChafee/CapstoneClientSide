@@ -35,16 +35,6 @@ const getSingleBook = (bookId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getBooksByShelfId = (shelfId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/shelves/${shelfId}/books`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
 export {
-  getAllBooks, getRecentReleases, getSingleBook, getBooksByShelfId,
+  getAllBooks, getRecentReleases, getSingleBook,
 };

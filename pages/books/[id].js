@@ -21,16 +21,22 @@ function ViewSingleBook() {
   };
 
   useEffect(() => {
-    getDetails(id);
-    reviews(id);
-  }, []);
+    getDetails();
+    reviews();
+  }, [id]);
 
   return (
     <>
       <div className="page-container">
         <h1>{bookDetails.title}</h1>
         <Image src={bookDetails.imageUrl} />
-        <h4>By {bookDetails.authorInformation.map((a) => a.firstName)} {bookDetails.authorInformation.map((a) => a.lastName)}</h4>
+        {bookDetails.authorInformation ? (
+          <h4>
+            By {bookDetails.authorInformation.map((a) => `${a.firstName} ${a.lastName}`).join(', ')}
+          </h4>
+        ) : (
+          <p>Loading author information...</p>
+        )}
         <h4>{bookDetails.publicationDate}</h4>
         <h4>{bookDetails.numberOfPages}</h4>
         <p>{bookDetails.sumary}</p>
@@ -49,16 +55,3 @@ function ViewSingleBook() {
 }
 
 export default ViewSingleBook;
-
-/*
-{
-  "id": 1,
-  "authorInformation": [
-    {
-      "id": 1,
-      "firstName": "E.M.",
-      "lastName": "Forster"
-    }
-  ]
-}
-*/
