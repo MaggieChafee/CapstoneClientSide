@@ -2,13 +2,14 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
-import { getSingleBook } from '../../api/bookData';
+import { getAverageRating, getSingleBook } from '../../api/bookData';
 import { getReviewsByBookId } from '../../api/reviewData';
 import ReviewCard from '../../components/cards/userReviewCard';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
   const [bookReviews, setBookReviews] = useState([]);
+  const [bookRating, setBookRating] = useState(0);
   const router = useRouter();
   const { id } = router.query;
 
@@ -20,9 +21,14 @@ function ViewSingleBook() {
     getReviewsByBookId(id).then(setBookReviews);
   };
 
+  const rating = () => {
+    getAverageRating(id).then(setBookRating);
+  };
+
   useEffect(() => {
     getDetails();
     reviews();
+    rating();
   }, [id]);
 
   return (
@@ -45,6 +51,7 @@ function ViewSingleBook() {
         </Button>
       </div>
       <div>
+        <h4>Avarage Rating: {bookRating}</h4>
         <h2>Reviews</h2>
         {bookReviews.map((review) => (
           <ReviewCard key={review.id} reviewObj={review} />
