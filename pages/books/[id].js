@@ -1,17 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { Button, Image } from 'react-bootstrap';
+import { Button, Image, Modal } from 'react-bootstrap';
 import { getAverageRating, getSingleBook } from '../../api/bookData';
 import { getReviewsByBookId } from '../../api/reviewData';
 import ReviewCard from '../../components/cards/userReviewCard';
+import ReviewForm from '../../components/allForms/ReviewForm';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
   const [bookReviews, setBookReviews] = useState([]);
   const [bookRating, setBookRating] = useState(0);
+  const [show, setShow] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const getDetails = () => {
     getSingleBook(id).then(setBookDetails);
@@ -50,6 +55,17 @@ function ViewSingleBook() {
           Shelf Shit
         </Button>
       </div>
+      <div>
+        <Button onClick={handleShow}>
+          Leave a Review
+        </Button>
+      </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>Leave a Review</Modal.Header>
+        <div>
+          <ReviewForm />
+        </div>
+      </Modal>
       <div>
         <h4>Avarage Rating: {bookRating}</h4>
         <h2>Reviews</h2>
