@@ -1,25 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { Button, Image, Modal } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { getAverageRating, getSingleBook } from '../../api/bookData';
-import { getReviewsByBookId } from '../../api/reviewData';
+import { getReviewsByBookId, getSingleReviewForBook } from '../../api/reviewData';
 import ReviewCard from '../../components/cards/userReviewCard';
 import ReviewForm from '../../components/allForms/ReviewForm';
+import { useAuth } from '../../utils/context/authContext';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
   const [bookReviews, setBookReviews] = useState([]);
   const [bookRating, setBookRating] = useState(0);
-  const [show, setShow] = useState(false);
+  const [usersReview, setUsersReview] = useState({});
+  const [reviewCheck, setReviewCheck] = useState(false);
   const router = useRouter();
   const { id } = router.query;
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const { user } = useAuth();
 
   const getDetails = () => {
     getSingleBook(id).then(setBookDetails);
+    const payload = {
+      bookId: id,
+      userId: user.id,
+    };
+    getSingleReviewForBook(payload).then((review) => {
+      setUsersReview(review);
+      if (Object.keys(review).length > 0) {
+        setReviewCheck(true);
+      } else {
+        setReviewCheck(false);
+      }
+    });
   };
 
   const reviews = () => {
@@ -56,18 +68,10 @@ function ViewSingleBook() {
         </Button>
       </div>
       <div>
-        <Button onClick={handleShow}>
-          Leave a Review
-        </Button>
+        {reviewCheck ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} />) : (<ReviewForm onUpdate={getDetails} />)}
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>Leave a Review</Modal.Header>
-        <div>
-          <ReviewForm />
-        </div>
-      </Modal>
       <div>
-        <h4>Avarage Rating: {bookRating}</h4>
+        <h4>Avarage Rating: {bookRating === 0 ? (<h4>No Ratings Yet</h4>) : (bookRating)}</h4>
         <h2>Reviews</h2>
         {bookReviews.map((review) => (
           <ReviewCard key={review.id} reviewObj={review} />
