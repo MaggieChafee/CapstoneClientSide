@@ -4,14 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { createReview } from '../../api/reviewData';
+import { createReview, updateReview } from '../../api/reviewData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   comment: ' ',
 };
 
-function ReviewForm({ reviewObj, onUpdate }) {
+function ReviewForm({ reviewObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(null);
@@ -20,7 +20,10 @@ function ReviewForm({ reviewObj, onUpdate }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (reviewObj.id) setFormInput(reviewObj);
+    if (reviewObj.id) {
+      setFormInput(reviewObj);
+      setUserRating(reviewObj.rating);
+    }
   }, [reviewObj.id]);
 
   const handleChange = (e) => {
@@ -35,16 +38,24 @@ function ReviewForm({ reviewObj, onUpdate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
-      comment: formInput.comment,
-      rating: userRating,
-      bookId: Number(id),
-      userId: user.id,
-      dateCreated: new Date(),
-    };
-    createReview(payload).then(() => {
-      onUpdate();
-    });
+    if (reviewObj.id) {
+      const updatePayload = {
+        reviewId: reviewObj.id,
+        comment: formInput.comment,
+        rating: userRating,
+        dateCreated: new Date(),
+      };
+      updateReview(updatePayload).then(() => router.push(`/books/${reviewObj.bookId}/details`));
+    } else {
+      const payload = {
+        comment: formInput.comment,
+        rating: userRating,
+        bookId: Number(id),
+        userId: user.id,
+        dateCreated: new Date(),
+      };
+      createReview(payload).then(() => router.push(`/books/${id}/details`));
+    }
   };
   return (
     <>
@@ -58,7 +69,7 @@ function ReviewForm({ reviewObj, onUpdate }) {
                   key={star}
                   type="radio"
                   name="rating"
-                  value={formInput.rating}
+                  value={userRating}
                   onChange={() => setUserRating(currentRating)}
                 />
                 <span
@@ -97,8 +108,8 @@ ReviewForm.propTypes = {
     id: PropTypes.number,
     rating: PropTypes.number,
     comment: PropTypes.string,
+    bookId: PropTypes.number,
   }),
-  onUpdate: PropTypes.func.isRequired,
 };
 
 ReviewForm.defaultProps = {

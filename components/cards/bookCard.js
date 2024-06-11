@@ -11,7 +11,7 @@ function BookCard({ bookObj }) {
       <Card.Img variant="top" src={bookObj.imageUrl} />
       <Card.Body>
         <Card.Title>{bookObj.title}</Card.Title>
-        <Link href={`/books/${bookObj.id}`} passHref>
+        <Link href={`/books/${bookObj.id}/details`} passHref>
           <Button variant="primary">View</Button>
         </Link>
       </Card.Body>

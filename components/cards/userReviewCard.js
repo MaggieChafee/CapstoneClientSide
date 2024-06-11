@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Link from 'next/link';
 
 function ReviewCard({ reviewObj }) {
   const formatDateTimeToDate = (dateTime) => {
@@ -29,7 +30,9 @@ function ReviewCard({ reviewObj }) {
         <Card.Text>
           {reviewObj.comment}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Link href={`/reviews/edit/${reviewObj.id}`} passHref>
+          <Button variant="primary">Edit</Button>
+        </Link>
       </Card.Body>
     </Card>
   );

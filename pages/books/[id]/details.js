@@ -2,11 +2,11 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
-import { getAverageRating, getSingleBook } from '../../api/bookData';
-import { getReviewsByBookId, getSingleReviewForBook } from '../../api/reviewData';
-import ReviewCard from '../../components/cards/userReviewCard';
-import ReviewForm from '../../components/allForms/ReviewForm';
-import { useAuth } from '../../utils/context/authContext';
+import Link from 'next/link';
+import { getAverageRating, getSingleBook } from '../../../api/bookData';
+import { getReviewsByBookId, getSingleReviewForBook } from '../../../api/reviewData';
+import { useAuth } from '../../../utils/context/authContext';
+import ReviewCard from '../../../components/cards/userReviewCard';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
@@ -14,6 +14,7 @@ function ViewSingleBook() {
   const [bookRating, setBookRating] = useState(0);
   const [usersReview, setUsersReview] = useState({});
   const [reviewCheck, setReviewCheck] = useState(false);
+
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAuth();
@@ -68,7 +69,8 @@ function ViewSingleBook() {
         </Button>
       </div>
       <div>
-        {reviewCheck ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} />) : (<ReviewForm onUpdate={getDetails} />)}
+        {reviewCheck
+          ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} />) : (<Link href={`/books/${id}/add-review`} passHref><Button>Leave a Review</Button></Link>)}
       </div>
       <div>
         <h4>Avarage Rating: {bookRating === 0 ? (<h4>No Ratings Yet</h4>) : (bookRating)}</h4>
