@@ -4,22 +4,22 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
+import { deleteReview } from '../../api/reviewData';
 
-function ReviewCard({ reviewObj }) {
-  const formatDateTimeToDate = (dateTime) => {
-    const date = new Date(dateTime);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${month}/${day}/${year}`;
+function ReviewCard({ reviewObj, onUpdate }) {
+  console.log(reviewObj.dateCreated);
+
+  const deleteThisReview = () => {
+    if (window.confirm('Do you want to delete this review')) {
+      deleteReview(reviewObj.id).then(() => onUpdate());
+    }
   };
-
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>{reviewObj.bookTitle}</Card.Title>
         <Card.Subtitle>
-          By {reviewObj.userName} on {formatDateTimeToDate(reviewObj.dateCreated)}
+          By {reviewObj.userName} on {reviewObj.dateCreated}
         </Card.Subtitle>
         <Card.Text>
           {reviewObj.rating > 0 && [...Array(reviewObj.rating)].map(() => <p>★</p>)}
@@ -33,6 +33,7 @@ function ReviewCard({ reviewObj }) {
         <Link href={`/reviews/edit/${reviewObj.id}`} passHref>
           <Button variant="primary">Edit</Button>
         </Link>
+        <Button onClick={deleteThisReview}>Delete</Button>
       </Card.Body>
     </Card>
   );
@@ -49,6 +50,7 @@ ReviewCard.propTypes = {
     comment: PropTypes.string,
     bookTitle: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default ReviewCard;
