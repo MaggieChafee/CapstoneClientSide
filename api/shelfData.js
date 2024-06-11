@@ -49,7 +49,7 @@ const addBookToShelf = (payload) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  }).then((r) => r.json())
+  })
     .then((data) => resolve(data))
     .catch(reject);
 });
@@ -77,6 +77,17 @@ const deleteBookFromShelf = (bookShelfId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const shelfCheck = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${payload.bookId}/shelves/${payload.userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((r) => r.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getUsersShelves, createShelf, getSingleShelf, addBookToShelf, updateShelfBookIsOn, deleteBookFromShelf,
+  getUsersShelves, createShelf, getSingleShelf, addBookToShelf, updateShelfBookIsOn, deleteBookFromShelf, shelfCheck,
 };

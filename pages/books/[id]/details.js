@@ -7,6 +7,7 @@ import { getAverageRating, getSingleBook } from '../../../api/bookData';
 import { getReviewsByBookId, getSingleReviewForBook } from '../../../api/reviewData';
 import { useAuth } from '../../../utils/context/authContext';
 import ReviewCard from '../../../components/cards/userReviewCard';
+import { shelfCheck } from '../../../api/shelfData';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
@@ -14,6 +15,8 @@ function ViewSingleBook() {
   const [bookRating, setBookRating] = useState(0);
   const [usersReview, setUsersReview] = useState({});
   const [reviewCheck, setReviewCheck] = useState(false);
+  const [checkShelf, setCheckShelf] = useState(false);
+  const [shelfName, setShelfName] = useState(null);
 
   const router = useRouter();
   const { id } = router.query;
@@ -31,6 +34,14 @@ function ViewSingleBook() {
         setReviewCheck(true);
       } else {
         setReviewCheck(false);
+      }
+    });
+    shelfCheck(payload).then((shelf) => {
+      setShelfName(shelf);
+      if (Object.keys(shelf).length > 0) {
+        setCheckShelf(true);
+      } else {
+        setCheckShelf(false);
       }
     });
   };
@@ -64,9 +75,9 @@ function ViewSingleBook() {
         <h4>{bookDetails.publicationDate}</h4>
         <h4>{bookDetails.numberOfPages}</h4>
         <p>{bookDetails.sumary}</p>
-        <Button>
-          Shelf Shit
-        </Button>
+        <Link href={`../../books/${bookDetails.id}/shelf`} passHref>
+          <Button>{checkShelf && shelfName ? shelfName.name : 'Add Book To Shelf'}</Button>
+        </Link>
       </div>
       <div>
         {reviewCheck
