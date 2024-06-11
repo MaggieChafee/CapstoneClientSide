@@ -7,8 +7,6 @@ import Link from 'next/link';
 import { deleteReview } from '../../api/reviewData';
 
 function ReviewCard({ reviewObj, onUpdate }) {
-  console.log(reviewObj.dateCreated);
-
   const deleteThisReview = () => {
     if (window.confirm('Do you want to delete this review')) {
       deleteReview(reviewObj.id).then(() => onUpdate());
