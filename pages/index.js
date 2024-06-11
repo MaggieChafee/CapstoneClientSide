@@ -17,7 +17,7 @@ function Home() {
   const [userReviews, setUserReviews] = useState([]);
   const { user } = useAuth();
 
-  const userStatus = () => {
+  const getPageDetails = () => {
     checkUser(user.uid).then((r) => {
       if (r.id) {
         setIsRegistered(true);
@@ -26,20 +26,13 @@ function Home() {
         setIsRegistered(false);
       }
     });
-  };
 
-  const bookShelves = () => {
     getUsersShelves(user.id).then(setUserShelves);
-  };
-
-  const reviews = () => {
     getUsersReviews(user.id).then(setUserReviews);
   };
 
   useEffect(() => {
-    userStatus();
-    bookShelves();
-    reviews();
+    getPageDetails();
   }, [user]);
 
   return (
@@ -60,7 +53,7 @@ function Home() {
           </div>
           <div>
             {userReviews.map((review) => (
-              <ReviewCard key={review.id} reviewObj={review} />
+              <ReviewCard key={review.id} reviewObj={review} onUpdate={getPageDetails} />
             ))}
           </div>
         </div>

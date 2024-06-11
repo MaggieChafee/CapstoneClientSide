@@ -25,7 +25,7 @@ const getSingleReviewForBook = (payload) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((response) => response.json())
+  }).then((r) => r.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
@@ -82,6 +82,17 @@ const deleteReview = (reviewId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleReview = (reviewId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/reviews/${reviewId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((r) => r.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getReviewsByBookId, getSingleReviewForBook, getUsersReviews, createReview, updateReview, deleteReview,
+  getReviewsByBookId, getSingleReviewForBook, getUsersReviews, createReview, updateReview, deleteReview, getSingleReview,
 };
