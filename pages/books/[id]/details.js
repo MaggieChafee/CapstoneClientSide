@@ -8,6 +8,7 @@ import { getReviewsByBookId, getSingleReviewForBook } from '../../../api/reviewD
 import { useAuth } from '../../../utils/context/authContext';
 import ReviewCard from '../../../components/cards/userReviewCard';
 import { shelfCheck } from '../../../api/shelfData';
+import BookShelfButton from '../../../components/buttons/BookShelfButton';
 
 function ViewSingleBook() {
   const [bookDetails, setBookDetails] = useState({});
@@ -75,9 +76,8 @@ function ViewSingleBook() {
         <h4>{bookDetails.publicationDate}</h4>
         <h4>{bookDetails.numberOfPages}</h4>
         <p>{bookDetails.sumary}</p>
-        <Link href={`../../books/${bookDetails.id}/shelf`} passHref>
-          <Button>{checkShelf && shelfName ? shelfName.name : 'Add Book To Shelf'}</Button>
-        </Link>
+
+        {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} shelfObj={shelfName} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button>Add Book To Shelf</Button></Link>)}
       </div>
       <div>
         {reviewCheck
@@ -87,7 +87,7 @@ function ViewSingleBook() {
         <h4>Avarage Rating: {bookRating === 0 ? (<h4>No Ratings Yet</h4>) : (bookRating)}</h4>
         <h2>Reviews</h2>
         {bookReviews.map((review) => (
-          <ReviewCard key={review.id} reviewObj={review} />
+          <ReviewCard key={review.id} reviewObj={review} onUpdate={getDetails} />
         ))}
       </div>
     </>

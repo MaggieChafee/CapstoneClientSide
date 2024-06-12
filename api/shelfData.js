@@ -88,6 +88,17 @@ const shelfCheck = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getBookShelfUsingBookIdAndShelfId = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${payload.bookId}/bookshelves/${payload.shelfId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((r) => r.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getUsersShelves, createShelf, getSingleShelf, addBookToShelf, updateShelfBookIsOn, deleteBookFromShelf, shelfCheck,
+  getUsersShelves, createShelf, getSingleShelf, addBookToShelf, updateShelfBookIsOn, deleteBookFromShelf, shelfCheck, getBookShelfUsingBookIdAndShelfId,
 };
