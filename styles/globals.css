@@ -18,13 +18,64 @@ a {
 }
 
 body {
-  background-color: #FFDCD3;
+  background-color: #F8F3EA;
 }
 
 .page-container {
   margin: 5%;
 }
 
+/* profile page */
+.profile-page-container {
+  margin: 5%;
+
+  .profile-header {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5%;
+
+    .profile-image {
+      border-radius: 50%;
+    }
+  }
+
+  .profile-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+  
+    .card-column {
+      width: 50%;
+    }
+  }
+  
+}
+
+/* profile bookshelf card */
+.profile-bookshelf-card {
+  gap: 5px;
+
+  .profile-bookshelf-header {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    .profile-bookshelf-button {
+      color: #F8F3EA;
+      background-color: #7669E9 !important;
+      border-color: #7669E9;
+      box-shadow: 5px 5px #D599FB;
+    }  
+  }
+
+  .profile-bookshelf-books {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+/* shelf modal */
 .bookshelf-btn-selected {
   button {
     background-color: blueviolet !important;

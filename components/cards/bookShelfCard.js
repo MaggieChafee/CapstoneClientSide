@@ -47,7 +47,7 @@ function BookShelfCard({
 
   return (
     <Card className={className}>
-      <h1>{shelfObj.name}</h1>
+      <h4>{shelfObj.name}</h4>
       <Button onClick={handleClick}>+</Button>
     </Card>
   );
