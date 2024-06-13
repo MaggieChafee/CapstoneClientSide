@@ -24,3 +24,15 @@ body {
 .page-container {
   margin: 5%;
 }
+
+.bookshelf-btn-selected {
+  button {
+    background-color: blueviolet !important;
+  }
+  }
+  
+.bookshelf-btn-notselected {
+  button {
+    background-color: darkorange !important;
+  } 
+}
