@@ -77,7 +77,7 @@ function ViewSingleBook() {
         <h4>{bookDetails.numberOfPages}</h4>
         <p>{bookDetails.sumary}</p>
 
-        {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} shelfObj={shelfName} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button>Add Book To Shelf</Button></Link>)}
+        {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} shelfObj={shelfName} onUpdate={getDetails} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button>Add Book To Shelf</Button></Link>)}
       </div>
       <div>
         {reviewCheck

@@ -4,13 +4,17 @@ import { Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import { getUsersShelves, shelfCheck } from '../../api/shelfData';
+import {
+  deleteBookFromShelf,
+  getBookShelfUsingBookIdAndShelfId, getUsersShelves, shelfCheck,
+} from '../../api/shelfData';
 import BookShelfCard from '../cards/bookShelfCard';
 
-function BookShelfButton({ shelfObj }) {
+function BookShelfButton({ shelfObj, onUpdate }) {
   const [userShelves, setUserShelves] = useState([]);
   const [currentShelf, setCurrentShelf] = useState(shelfObj);
   const [show, setShow] = useState(false);
+  const [bookShelf, setBookShelf] = useState({});
   const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
@@ -31,16 +35,29 @@ function BookShelfButton({ shelfObj }) {
     getUsersShelves(user.id).then(setUserShelves);
   };
 
+  const bookShelfId = () => {
+    const getIdPayload = {
+      bookId: Number(id),
+      shelfId: currentShelf.id,
+    };
+    getBookShelfUsingBookIdAndShelfId(getIdPayload).then(setBookShelf);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       settingText();
       shelves();
+      bookShelfId();
     };
 
     if (user && id) {
       fetchData();
     }
   }, [user, id]);
+
+  const deleteThisBookShelf = () => {
+    deleteBookFromShelf(bookShelf.id).then(setShow(false)).then(() => onUpdate());
+  };
 
   return (
     <>
@@ -61,7 +78,7 @@ function BookShelfButton({ shelfObj }) {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary">Delete Book From Shelves</Button>
+            <Button variant="secondary" onClick={deleteThisBookShelf}>Delete Book From Shelves</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -74,6 +91,7 @@ BookShelfButton.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default BookShelfButton;

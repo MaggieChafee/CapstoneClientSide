@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -8,20 +9,26 @@ import { addBookToShelf, getBookShelfUsingBookIdAndShelfId, updateShelfBookIsOn 
 function BookShelfCard({
   shelfObj, className, currentShelf, onUpdate,
 }) {
+  const [bookShelf, setBookshelf] = useState({});
   const router = useRouter();
   const { id } = router.query;
 
-  const handleClick = async () => {
+  const bookShelfCheck = () => {
     const getIdPayload = {
       bookId: Number(id),
       shelfId: currentShelf.id,
     };
+    getBookShelfUsingBookIdAndShelfId(getIdPayload).then(setBookshelf);
+  };
 
-    const fetchedBookShelf = await getBookShelfUsingBookIdAndShelfId(getIdPayload);
+  useEffect(() => {
+    bookShelfCheck();
+  }, [id]);
 
-    if (fetchedBookShelf.id) {
+  const handleClick = async () => {
+    if (bookShelf.id) {
       const payload = {
-        bookShelfId: fetchedBookShelf.id,
+        bookShelfId: bookShelf.id,
         shelfId: shelfObj.id,
         bookId: Number(id),
       };
