@@ -13,18 +13,17 @@ function ReviewCard({ reviewObj, onUpdate }) {
     }
   };
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="review-card">
       <Card.Body>
         <Card.Title>{reviewObj.bookTitle}</Card.Title>
         <Card.Subtitle>
           By {reviewObj.userName} on {reviewObj.dateCreated}
         </Card.Subtitle>
-        <Card.Text>
-          {reviewObj.rating > 0 && [...Array(reviewObj.rating)].map(() => <p>★</p>)}
-        </Card.Text>
-        <Card.Text>
-          {reviewObj.userName}
-        </Card.Text>
+        <div className="review-stars">
+          <Card.Text>
+            {reviewObj.rating > 0 && [...Array(reviewObj.rating)].map(() => <span>★</span>)}
+          </Card.Text>
+        </div>
         <Card.Text>
           {reviewObj.comment}
         </Card.Text>

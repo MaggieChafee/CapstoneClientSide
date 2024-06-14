@@ -38,30 +38,28 @@ function Home() {
   return (
     <>
       {isRegistered === false ? (<><RegistrationForm /></>) : (
-        <div
-          className="profile-page-container"
-        >
+        <div className="profile-page-container">
           <div className="profile-header">
-            <div>
+            <div className="profile-header-left">
               <Image src={userDetails.imageUrl} alt="profile picture" className="profile-image" />
             </div>
-            <div>
+            <div className="profile-header-right">
               <h1>Hello {userDetails.username}! </h1>
               <p>Contact Info: {userDetails.email}</p>
             </div>
           </div>
           <div style={{ height: '20px' }} />
           <div className="profile-cards">
-            <div className="card-column">
+            <div className="card-column-left">
+              <h2>Your Reviews</h2>
+              {userReviews.map((review) => (
+                <ReviewCard key={review.id} reviewObj={review} onUpdate={getPageDetails} />
+              ))}
+            </div>
+            <div className="card-column-right">
               <h2>Your Shelves</h2>
               {userShelves.map((shelf) => (
                 <ProfileBookShelf key={shelf.id} bookShelfObj={shelf} />
-              ))}
-            </div>
-            <div className="card-column">
-              <h2>Your Shelves</h2>
-              {userReviews.map((review) => (
-                <ReviewCard key={review.id} reviewObj={review} onUpdate={getPageDetails} />
               ))}
             </div>
           </div>

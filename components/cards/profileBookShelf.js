@@ -10,19 +10,24 @@ const initialState = {
 
 function ProfileBookShelf({ bookShelfObj }) {
   return (
-    <div className="profile-bookshelf-card" style={{ height: '300px' }}>
+    <div className="profile-bookshelf-card" style={{ height: '400px' }}>
       <div className="profile-bookshelf-header">
         <h3>{bookShelfObj.name}</h3>
         <Link href={`/shelves/${bookShelfObj.id}`} passHref>
           <Button className="profile-bookshelf-button" variant="dark">Show More</Button>
         </Link>
       </div>
-      <hr style={{ width: '100%', size: '10' }} />
-      <div className="profile-bookshelf-books" style={{ width: '660px' }}>
+      <hr style={{
+        width: '100%', height: '3px', border: 'none',
+      }}
+      />
+      <div className="profile-bookshelf-books" style={{ width: '825px' }}>
         {bookShelfObj.bookInformation.map((bookInfo) => (
-          <div key={bookInfo.bookId}>
-            <Image variant="top" src={bookInfo.bookImage} style={{ width: '10rem' }} />
-            <p>{bookInfo.bookTitle}</p>
+          <div key={bookInfo.bookId} className="profile-book-container">
+            <Link href={`/books/${bookInfo.bookId}/details`} passHref>
+              <Image src={bookInfo.bookImage} style={{ width: '10rem' }} />
+            </Link>
+            <p className="profile-book-title">{bookInfo.bookTitle}</p>
           </div>
         ))}
       </div>

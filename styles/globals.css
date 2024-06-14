@@ -28,25 +28,62 @@ body {
 /* profile page */
 .profile-page-container {
   margin: 5%;
+  gap: 10px;
 
   .profile-header {
     display:flex;
     flex-direction: row;
     align-items: flex-end;
     gap: 5%;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #FFBE98;
+    border-width: 3px;
 
-    .profile-image {
-      border-radius: 50%;
+    box-shadow: rgba(255, 190, 152, .2) 0px 8px 24px;
+    
+
+    .profile-header-left {
+      width: 25%;
+
+      .profile-image {
+        border-radius: 50%;
+      }
     }
+    
   }
 
   .profile-cards {
     display: flex;
     flex-direction: row;
-    gap: 5%;
+    gap: 20px;
   
-    .card-column {
-      width: 50%;
+    .card-column-right {
+      width: 70%;
+      background-color: #FFFFFF;
+      padding: 15px;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #FFBE98;
+      border-width: 3px;
+
+      box-shadow: rgba(255, 190, 152, .2) 0px 8px 24px;
+    
+    }
+
+    .card-column-left {
+      width: 30%;
+      background-color: #FFFFFF;
+      padding: 15px;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #FFBE98;
+      border-width: 3px;
+
+      box-shadow: rgba(255, 190, 152, .2) 0px 8px 24px;
+      
     }
   }
   
@@ -55,26 +92,54 @@ body {
 /* profile bookshelf card */
 .profile-bookshelf-card {
   gap: 5px;
+  border-style: none;
 
   .profile-bookshelf-header {
     display: flex;
     flex-direction: row;
     gap: 5px;
-
-    .profile-bookshelf-button {
-      color: #F8F3EA;
-      background-color: #7669E9 !important;
-      border-color: #7669E9;
-      box-shadow: 5px 5px #D599FB;
-    }  
   }
 
+  .profile-bookshelf-button {
+    color: #F8F3EA;
+    background-color: #7669E9 !important;
+    border-color: #7669E9;
+  }  
+
+  hr {
+    background-color: #FFBE98;
+  }
   .profile-bookshelf-books {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    gap: 5px;
+  }
+
+  .profile-book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-book-title {
+    margin-top: 5px;
   }
 }
+
+/* Review Card */
+.review-card {
+  display: flex;
+  flex-direction: column;
+
+  .review-stars {
+    display: flex;
+    flex-direction: row;
+    color: #7669E9;
+  }
+}
+
 /* shelf modal */
 .bookshelf-btn-selected {
   button {
