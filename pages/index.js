@@ -51,13 +51,12 @@ function Home() {
           <div style={{ height: '20px' }} />
           <div className="profile-cards">
             <div className="card-column-left">
-              <h2>Your Reviews</h2>
+              <h2>Recent Reviews</h2>
               {userReviews.map((review) => (
                 <ReviewCard key={review.id} reviewObj={review} onUpdate={getPageDetails} />
               ))}
             </div>
             <div className="card-column-right">
-              <h2>Your Shelves</h2>
               {userShelves.map((shelf) => (
                 <ProfileBookShelf key={shelf.id} bookShelfObj={shelf} />
               ))}

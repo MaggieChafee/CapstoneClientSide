@@ -11,9 +11,9 @@ export default function AllBooks() {
 
   return (
     <>
-      <div className="page-container">
+      <div className="all-books-page-container">
         <h1>Browse All Books</h1>
-        <div>
+        <div className="all-books-container">
           {allBooks.map((book) => (
             <BookCard key={book.id} bookObj={book} />
           ))}

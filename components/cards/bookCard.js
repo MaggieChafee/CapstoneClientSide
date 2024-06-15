@@ -1,21 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 function BookCard({ bookObj }) {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={bookObj.imageUrl} />
-      <Card.Body>
-        <Card.Title>{bookObj.title}</Card.Title>
-        <Link href={`/books/${bookObj.id}/details`} passHref>
-          <Button variant="primary">View</Button>
-        </Link>
-      </Card.Body>
-    </Card>
+    <div className="all-book-card">
+      <Link href={`/books/${bookObj.id}/details`} passHref>
+        <Card.Img variant="top" className="book-image" src={bookObj.imageUrl} style={{ maxHeight: '15rem', maxWidth: '10rem' }} />
+      </Link>
+      <Card.Title>{bookObj.title}</Card.Title>
+    </div>
   );
 }
 

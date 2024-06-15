@@ -1,22 +1,40 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteReview } from '../../api/reviewData';
+import { useAuth } from '../../utils/context/authContext';
 
 function ReviewCard({ reviewObj, onUpdate }) {
+  const { user } = useAuth();
+  const [buttonDisplay, setButtonDisplay] = useState(false);
+
+  const userCheck = () => {
+    if (reviewObj.userId === user.id) {
+      setButtonDisplay(true);
+    } else {
+      setButtonDisplay(false);
+    }
+  };
+
   const deleteThisReview = () => {
     if (window.confirm('Do you want to delete this review')) {
       deleteReview(reviewObj.id).then(() => onUpdate());
     }
   };
+
+  useEffect(() => {
+    userCheck();
+  }, [user]);
+
   return (
     <Card className="review-card">
       <Card.Body>
         <Card.Title>{reviewObj.bookTitle}</Card.Title>
-        <Card.Subtitle>
+        <Card.Subtitle className="subtitle">
           By {reviewObj.userName} on {reviewObj.dateCreated}
         </Card.Subtitle>
         <div className="review-stars">
@@ -27,10 +45,15 @@ function ReviewCard({ reviewObj, onUpdate }) {
         <Card.Text>
           {reviewObj.comment}
         </Card.Text>
-        <Link href={`/reviews/edit/${reviewObj.id}`} passHref>
-          <Button variant="primary">Edit</Button>
-        </Link>
-        <Button onClick={deleteThisReview}>Delete</Button>
+        <div style={{ maxWidth: '18rem' }}>
+          {buttonDisplay ? (
+            <>
+              <Link href={`/reviews/edit/${reviewObj.id}`} passHref>
+                <Button className="review-buttons" variant="dark">Edit</Button>
+              </Link><Button className="review-buttons" variant="dark" onClick={deleteThisReview}>Delete</Button>
+            </>
+          ) : '' }
+        </div>
       </Card.Body>
     </Card>
   );

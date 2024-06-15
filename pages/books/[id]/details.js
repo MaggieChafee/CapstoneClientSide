@@ -63,32 +63,41 @@ function ViewSingleBook() {
 
   return (
     <>
-      <div className="page-container">
-        <h1>{bookDetails.title}</h1>
-        <Image src={bookDetails.imageUrl} />
-        {bookDetails.authorInformation ? (
-          <h4>
-            By {bookDetails.authorInformation.map((a) => `${a.firstName} ${a.lastName}`).join(', ')}
-          </h4>
-        ) : (
-          <p>Loading author information...</p>
-        )}
-        <h4>{bookDetails.publicationDate}</h4>
-        <h4>{bookDetails.numberOfPages}</h4>
-        <p>{bookDetails.sumary}</p>
+      <div className="book-details-container">
+        <div className="book-details-header-container">
+          <div>
+            <Image src={bookDetails.imageUrl} style={{ maxWidth: '18rem' }} />
+          </div>
+          <div className="book-details-header">
+            <h1>{bookDetails.title}</h1>
+            {bookDetails.authorInformation ? (
+              <h3>
+                By {bookDetails.authorInformation.map((a) => `${a.firstName} ${a.lastName}`).join(', ')}
+              </h3>
+            ) : (
+              <p>Loading author information...</p>
+            )}
+            <h3>Release Date: {bookDetails.publicationDate}</h3>
+            <h6>Page Count: {bookDetails.numberOfPages}</h6>
 
-        {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} shelfObj={shelfName} onUpdate={getDetails} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button>Add Book To Shelf</Button></Link>)}
+            <p>{bookDetails.summary}</p>
+            {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} className="book-shelf-button" shelfObj={shelfName} onUpdate={getDetails} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button className="book-shelf-button">Add Book To Shelf</Button></Link>)}
+          </div>
+        </div>
       </div>
-      <div>
-        {reviewCheck
-          ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} onUpdate={getDetails} />) : (<Link href={`/books/${id}/add-review`} passHref><Button>Leave a Review</Button></Link>)}
-      </div>
-      <div>
-        <h4>Avarage Rating: {bookRating === 0 ? (<h4>No Ratings Yet</h4>) : (bookRating)}</h4>
-        <h2>Reviews</h2>
-        {bookReviews.map((review) => (
-          <ReviewCard key={review.id} reviewObj={review} onUpdate={getDetails} />
-        ))}
+      <div style={{ height: '20px' }} />
+      <div className="book-details-container">
+        <h2>Avarage Rating: {bookRating === 0 ? (<h2>No Ratings Yet</h2>) : (bookRating)}</h2>
+        <div>
+          {reviewCheck
+            ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} onUpdate={getDetails} />) : (<Link href={`/books/${id}/add-review`} passHref><Button>Leave a Review</Button></Link>)}
+        </div>
+        <div>
+          <h2>Reviews</h2>
+          {bookReviews.map((review) => (
+            <ReviewCard key={review.id} reviewObj={review} onUpdate={getDetails} />
+          ))}
+        </div>
       </div>
     </>
   );
