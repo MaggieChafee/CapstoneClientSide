@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { addBookToShelf, getBookShelfUsingBookIdAndShelfId, updateShelfBookIsOn } from '../../api/shelfData';
@@ -46,10 +46,10 @@ function BookShelfCard({
   };
 
   return (
-    <Card className={className}>
+    <div className={className}>
       <h4>{shelfObj.name}</h4>
-      <Button onClick={handleClick}>+</Button>
-    </Card>
+      <Button variant="dark" onClick={handleClick}>+</Button>
+    </div>
   );
 }
 

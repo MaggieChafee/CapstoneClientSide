@@ -77,9 +77,9 @@ function ViewSingleBook() {
             ) : (
               <p>Loading author information...</p>
             )}
-            <h3>Release Date: {bookDetails.publicationDate}</h3>
-            <h6>Page Count: {bookDetails.numberOfPages}</h6>
-
+            <div style={{ height: '20px' }} />
+            <p>Release Date: {bookDetails.publicationDate}</p>
+            <p>Page Count: {bookDetails.numberOfPages}</p>
             <p>{bookDetails.summary}</p>
             {checkShelf && shelfName ? (<BookShelfButton key={shelfName.id} className="book-shelf-button" shelfObj={shelfName} onUpdate={getDetails} />) : (<Link href={`../../books/${bookDetails.id}/shelf`} passHref><Button className="book-shelf-button">Add Book To Shelf</Button></Link>)}
           </div>
@@ -87,10 +87,10 @@ function ViewSingleBook() {
       </div>
       <div style={{ height: '20px' }} />
       <div className="book-details-container">
-        <h2>Avarage Rating: {bookRating === 0 ? (<h2>No Ratings Yet</h2>) : (bookRating)}</h2>
+        <h2>Avarage Rating: {bookRating === 0 ? ('No Ratings Yet') : ([...Array(bookRating)].map(() => (<span>★</span>)))}</h2>
         <div>
           {reviewCheck
-            ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} onUpdate={getDetails} />) : (<Link href={`/books/${id}/add-review`} passHref><Button>Leave a Review</Button></Link>)}
+            ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} onUpdate={getDetails} />) : (<Link href={`/books/${id}/add-review`} passHref><Button className="sign-out-button" variant="dark">Leave a Review</Button></Link>)}
         </div>
         <div>
           <h2>Reviews</h2>
@@ -98,6 +98,7 @@ function ViewSingleBook() {
             <ReviewCard key={review.id} reviewObj={review} onUpdate={getDetails} />
           ))}
         </div>
+        <div style={{ height: '25px' }} />
       </div>
     </>
   );

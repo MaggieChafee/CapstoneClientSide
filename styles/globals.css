@@ -19,6 +19,7 @@ a {
 
 body {
   background-color: #F8F3EA;
+  margin-bottom: 5%;
 }
 /* ------ NAVBAR ------ */ 
 .sign-out-button {
@@ -26,6 +27,7 @@ body {
   color: #FFFFFF;
   border-color: #5E1AF4;
   border-width: 2px;
+  border-radius: 25px;
 }
 
 /* ------ PROFILE ------ */ 
@@ -100,9 +102,9 @@ body {
   }
 
   .profile-bookshelf-button {
-    color: #FFFFFF;
-    background-color: #7669E9 !important;
-    border-color: #5E1AF4;
+    color: #FFFFFF;;
+    background-color: #FFBE98 !important;
+    border-color: #FF6230;
     border-width: 2px;
   }  
 
@@ -121,6 +123,17 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .profile-book-image {
+    border-width: 2px;
+    border-radius: 15px;
+  }
+  .profile-book-image:hover {
+    border-style: solid;
+    border-color: #FF6230;
+    border-width: 2px;
+    border-radius: 15px;
   }
 
   .profile-book-title {
@@ -158,21 +171,7 @@ body {
   }
 }
 
-/* shelf modal */
-.bookshelf-btn-selected {
-  button {
-    background-color: blueviolet !important;
-  }
-  }
-  
-.bookshelf-btn-notselected {
-  button {
-    background-color: darkorange !important;
-  } 
-}
-
 /* ------ BOOKS ------ */
-
 /* all books */
 
 .all-books-page-container {
@@ -215,6 +214,8 @@ body {
   }
 }
 
+/* Book Details Page */
+
 .book-details-container {
   display: flex;
   flex-direction: column;
@@ -246,4 +247,44 @@ body {
     border-width: 2px;
     }
   }
+}
+
+/* Bookshelf Button and Modal*/ 
+.bookshelf-button {
+  background-color: #7669E9;
+  color: #FFFFFF;
+  border-color: #5E1AF4;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.bookshelf-btn-selected {
+  button {
+  background-color: #7669E9;
+  color: #FFFFFF;
+  border-color: #5E1AF4;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
+  }
+}
+  
+.bookshelf-btn-notselected {
+  button {
+  background-color: #FFBE98;
+  color: #FFFFFF;
+  border-color: #FF6230;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
+  } 
+}
+
+.bookshelf-delete {
+  background-color: #FFFFFF;
+  border-color: #FF6230;
+  color: #FF6230;
+  border-width: 2px;
+  border-style: solid;
 }

@@ -25,7 +25,7 @@ function ProfileBookShelf({ bookShelfObj }) {
         {bookShelfObj.bookInformation.map((bookInfo) => (
           <div key={bookInfo.bookId} className="profile-book-container">
             <Link href={`/books/${bookInfo.bookId}/details`} passHref>
-              <Image src={bookInfo.bookImage} style={{ width: '10rem' }} />
+              <Image className="profile-book-image" src={bookInfo.bookImage} style={{ width: '10rem' }} />
             </Link>
             <p className="profile-book-title">{bookInfo.bookTitle}</p>
           </div>

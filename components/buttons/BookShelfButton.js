@@ -1,8 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../utils/context/authContext';
 import {
   deleteBookFromShelf,
@@ -44,14 +47,14 @@ function BookShelfButton({ shelfObj, onUpdate }) {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getEverything = () => {
       settingText();
       shelves();
       bookShelfId();
     };
 
     if (user && id) {
-      fetchData();
+      getEverything();
     }
   }, [user, id]);
 
@@ -59,9 +62,10 @@ function BookShelfButton({ shelfObj, onUpdate }) {
     deleteBookFromShelf(bookShelf.id).then(setShow(false)).then(() => onUpdate());
   };
 
+  const editIcon = <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} />;
   return (
     <>
-      <Button onClick={handleShow}>{currentShelf.name ? currentShelf.name : 'Loading'}</Button>
+      <Button className="bookshelf-button" variant="dark" onClick={handleShow}>{currentShelf.name ? currentShelf.name : 'Loading'} {editIcon}</Button>
       <div>
         <Modal show={show} onHide={handlClose}>
           <Modal.Header closeButton>
@@ -78,7 +82,7 @@ function BookShelfButton({ shelfObj, onUpdate }) {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={deleteThisBookShelf}>Delete Book From Shelves</Button>
+            <Button variant="dark" className="bookshelf-delete" onClick={deleteThisBookShelf}>Delete Book From Shelves</Button>
           </Modal.Footer>
         </Modal>
       </div>

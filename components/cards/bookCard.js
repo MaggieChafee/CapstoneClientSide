@@ -10,7 +10,7 @@ function BookCard({ bookObj }) {
       <Link href={`/books/${bookObj.id}/details`} passHref>
         <Card.Img variant="top" className="book-image" src={bookObj.imageUrl} style={{ maxHeight: '15rem', maxWidth: '10rem' }} />
       </Link>
-      <Card.Title>{bookObj.title}</Card.Title>
+      <Card.Text>{bookObj.title}</Card.Text>
     </div>
   );
 }
