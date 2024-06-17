@@ -17,7 +17,7 @@ function BookShelfForm() {
 
   return (
     <>
-      <div>
+      <div className="bookshelf-create-form">
         {userShelves.map((shelf) => (
           <BookShelfCard key={shelf.id} shelfObj={shelf} />
         ))}

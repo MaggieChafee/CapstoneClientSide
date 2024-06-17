@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createReview, updateReview } from '../../api/reviewData';
 import { useAuth } from '../../utils/context/authContext';
+import { getSingleBook } from '../../api/bookData';
 
 const initialState = {
   comment: ' ',
@@ -15,16 +16,22 @@ function ReviewForm({ reviewObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [book, setBook] = useState({});
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAuth();
+
+  const bookDetails = () => {
+    getSingleBook(id).then(setBook);
+  };
 
   useEffect(() => {
     if (reviewObj.id) {
       setFormInput(reviewObj);
       setUserRating(reviewObj.rating);
     }
-  }, [reviewObj.id]);
+    bookDetails();
+  }, [reviewObj.id, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,44 +64,50 @@ function ReviewForm({ reviewObj }) {
       createReview(payload).then(() => router.push(`/books/${id}/details`));
     }
   };
+
   return (
     <>
-      <div>
+      <div className="review-form-container">
+        <h4>Review for {book.title}</h4>
         <Form onSubmit={handleSubmit}>
-          {[...Array(5)].map((star, index) => {
-            const currentRating = index + 1;
-            return (
-              <label key={index}>
-                <input
-                  key={star}
-                  type="radio"
-                  name="rating"
-                  value={userRating}
-                  onChange={() => setUserRating(currentRating)}
-                />
-                <span
-                  className="star"
-                  style={{
-                    color:
-                  currentRating <= (hover || userRating) ? '#ffc107' : '#e4e5e9',
-                  }}
-                  onMouseEnter={() => setHover(currentRating)}
-                  onMouseLeave={() => setHover(null)}
-                >
-                  {' '}★{' '}
-                </span>
-              </label>
-            );
-          })}
+          <Form.Label htmlFor="inputPassword5">Rating</Form.Label>
+          <div>
+            {[...Array(5)].map((star, index) => {
+              const currentRating = index + 1;
+              return (
+                <label key={index}>
+                  <input
+                    key={star}
+                    type="radio"
+                    name="rating"
+                    value={userRating}
+                    onChange={() => setUserRating(currentRating)}
+                  />
+                  <span
+                    className="star"
+                    style={{
+                      color:
+                  currentRating <= (hover || userRating) ? '#FF6230' : '#e4e5e9',
+                    }}
+                    onMouseEnter={() => setHover(currentRating)}
+                    onMouseLeave={() => setHover(null)}
+                  >
+                    ★
+                  </span>
+                </label>
+              );
+            })}
+          </div>
           <Form.Label htmlFor="inputPassword5">Review</Form.Label>
           <Form.Control
-            type="text"
+            as="textarea"
             name="comment"
             value={formInput.comment}
             aria-describedby="passwordHelpBlock"
             onChange={handleChange}
           />
-          <Button type="submit">
+          <div style={{ height: '10px' }} />
+          <Button className="sign-out-button" type="submit">
             Submit
           </Button>
         </Form>

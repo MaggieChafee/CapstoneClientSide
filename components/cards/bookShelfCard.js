@@ -46,7 +46,7 @@ function BookShelfCard({
   };
 
   return (
-    <div className={className}>
+    <div className={className === 'bookshelf-btn-notselected' || className === 'bookshelf-btn-selected' ? className : 'bookshelf-create-div'}>
       <h4>{shelfObj.name}</h4>
       <Button variant="dark" onClick={handleClick}>+</Button>
     </div>

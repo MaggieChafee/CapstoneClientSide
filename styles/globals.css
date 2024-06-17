@@ -102,7 +102,6 @@ body {
   }
 
   .profile-bookshelf-button {
-    color: #FFFFFF;;
     background-color: #FFBE98 !important;
     border-color: #FF6230;
     border-width: 2px;
@@ -163,11 +162,12 @@ body {
 
   .review-buttons {
     width: 50%;
-    background-color: #FFFFFF;
+    background-color: #7669E9;
     border-radius: 50px;
-    color: #5E1AF4;
+    color: #FFFFFF;
     border-color: #5E1AF4;
     border-width: 2px;
+    border-style: solid;
   }
 }
 
@@ -247,6 +247,11 @@ body {
     border-width: 2px;
     }
   }
+  .review-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 /* Bookshelf Button and Modal*/ 
@@ -287,4 +292,50 @@ body {
   color: #FF6230;
   border-width: 2px;
   border-style: solid;
+}
+
+.bookshelf-create-form {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .bookshelf-create-div {
+    Button {
+      background-color: #FFBE98;
+      color: #FFFFFF;
+      border-color: #FF6230;
+      border-width: 2px;
+      width: 100%;
+      border-radius: 25px;
+      }
+  }
+
+  
+}
+
+
+/* Review Form */ 
+.review-form-container {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    visibility: hidden;
+  }
+  
 }
