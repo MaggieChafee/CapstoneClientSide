@@ -30,7 +30,7 @@ export default function NavBar() {
             <Link passHref href="/books/recent-releases">
               <Nav.Link>Recent Releases</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
+            <Button variant="dark" className="sign-out-button" onClick={signOut}>
               Sign Out
             </Button>
           </Nav>

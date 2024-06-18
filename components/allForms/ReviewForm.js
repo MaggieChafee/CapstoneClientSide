@@ -15,6 +15,7 @@ function ReviewForm({ reviewObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(null);
+
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAuth();
@@ -24,7 +25,7 @@ function ReviewForm({ reviewObj }) {
       setFormInput(reviewObj);
       setUserRating(reviewObj.rating);
     }
-  }, [reviewObj.id]);
+  }, [reviewObj.id, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,44 +58,49 @@ function ReviewForm({ reviewObj }) {
       createReview(payload).then(() => router.push(`/books/${id}/details`));
     }
   };
+
   return (
     <>
       <div>
         <Form onSubmit={handleSubmit}>
-          {[...Array(5)].map((star, index) => {
-            const currentRating = index + 1;
-            return (
-              <label key={index}>
-                <input
-                  key={star}
-                  type="radio"
-                  name="rating"
-                  value={userRating}
-                  onChange={() => setUserRating(currentRating)}
-                />
-                <span
-                  className="star"
-                  style={{
-                    color:
-                  currentRating <= (hover || userRating) ? '#ffc107' : '#e4e5e9',
-                  }}
-                  onMouseEnter={() => setHover(currentRating)}
-                  onMouseLeave={() => setHover(null)}
-                >
-                  {' '}★{' '}
-                </span>
-              </label>
-            );
-          })}
+          <Form.Label htmlFor="inputPassword5">Rating</Form.Label>
+          <div>
+            {[...Array(5)].map((star, index) => {
+              const currentRating = index + 1;
+              return (
+                <label key={index}>
+                  <input
+                    key={star}
+                    type="radio"
+                    name="rating"
+                    value={userRating}
+                    onChange={() => setUserRating(currentRating)}
+                  />
+                  <span
+                    className="star"
+                    style={{
+                      color:
+                  currentRating <= (hover || userRating) ? '#FF6230' : '#e4e5e9',
+                    }}
+                    onMouseEnter={() => setHover(currentRating)}
+                    onMouseLeave={() => setHover(null)}
+                  >
+                    ★
+                  </span>
+                </label>
+              );
+            })}
+          </div>
           <Form.Label htmlFor="inputPassword5">Review</Form.Label>
           <Form.Control
-            type="text"
+            as="textarea"
             name="comment"
             value={formInput.comment}
             aria-describedby="passwordHelpBlock"
             onChange={handleChange}
           />
-          <Button type="submit">
+          <div style={{ height: '10px' }} />
+          <Button className="sign-out-button" variant="dark" type="submit">
             Submit
           </Button>
         </Form>

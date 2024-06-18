@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Link from 'next/link';
 
 const initialState = {
@@ -10,20 +10,25 @@ const initialState = {
 
 function ProfileBookShelf({ bookShelfObj }) {
   return (
-    <div style={{ height: '300px' }}>
-      <h1>{bookShelfObj.name}</h1>
-      <Link href={`/shelves/${bookShelfObj.id}`} passHref>
-        <Button>Show More</Button>
-      </Link>
-      <div>
+    <div className="profile-bookshelf-card" style={{ height: '400px' }}>
+      <div className="profile-bookshelf-header">
+        <h3>{bookShelfObj.name}</h3>
+        <Link href={`/shelves/${bookShelfObj.id}`} passHref>
+          <Button className="profile-bookshelf-button" variant="dark">Show More</Button>
+        </Link>
+      </div>
+      <hr style={{
+        width: '100%', height: '3px', border: 'none',
+      }}
+      />
+      <div className="profile-bookshelf-books" style={{ width: '825px' }}>
         {bookShelfObj.bookInformation.map((bookInfo) => (
-          <Card key={bookInfo.bookId} style={{ width: '10rem' }}>
-            <Card.Img variant="top" src={bookInfo.bookImage} />
-            <Card.Body>
-              <Card.Title>{bookInfo.bookTitle}</Card.Title>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
+          <div key={bookInfo.bookId} className="profile-book-container">
+            <Link href={`/books/${bookInfo.bookId}/details`} passHref>
+              <Image className="profile-book-image" src={bookInfo.bookImage} style={{ maxHeight: '15rem', maxWidth: '10rem' }} />
+            </Link>
+            <p className="profile-book-title">{bookInfo.bookTitle}</p>
+          </div>
         ))}
       </div>
     </div>

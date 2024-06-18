@@ -18,21 +18,373 @@ a {
 }
 
 body {
-  background-color: #FFDCD3;
+  background-color: #F8F3EA;
+  margin-bottom: 5%;
+}
+/* ------ SIGN IN ------*/
+.sign-in-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+
+  .sign-in-left {
+    width: 40%
+  }
+  .sign-in-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%
+  }
 }
 
-.page-container {
-  margin: 5%;
+/* ------ NAVBAR ------ */ 
+.sign-out-button {
+  background-color: #7669E9;
+  color: #FFFFFF;
+  border-color: #5E1AF4;
+  border-width: 2px;
+  border-radius: 25px;
+  border-style: solid;
+}
+
+/* ------ PROFILE ------ */ 
+/* profile page */
+.profile-page-container { 
+  gap: 10px;
+
+  .profile-header {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5%;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #FFBE98;
+    border-width: 2px;
+    box-shadow: 10px 10px #FFBE98;
+    
+    .profile-header-left {
+      display: flex; /* Add this */
+      justify-content: center; /* Add this */
+      align-items: center;
+      width: 25%; 
+
+      .profile-image {
+        border-radius: 50%;
+        align-items: center;
+        max-width: 100%;
+      }
+    }
+    
+  }
+
+  .profile-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  
+    .card-column-right {
+      width: 70%;
+      background-color: #FFFFFF;
+      padding: 25px;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #FFBE98;
+      border-width: 2px;
+      box-shadow: 10px 10px #FFBE98;
+    
+    }
+
+    .card-column-left {
+      width: 30%;
+      background-color: #FFFFFF;
+      padding: 25px;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #FFBE98;
+      border-width: 2px;
+      box-shadow: 10px 10px #FFBE98;
+    }
+  }
+  
+}
+
+/* profile bookshelf card */
+.profile-bookshelf-card {
+  gap: 5px;
+  border-style: none;
+
+  .profile-bookshelf-header {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .profile-bookshelf-button {
+    background-color: #FFBE98 !important;
+    border-color: #FF6230;
+    border-width: 2px;
+  }  
+
+  hr {
+    background-color: #FF6230;
+  }
+  .profile-bookshelf-books {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .profile-book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-book-image {
+    border-width: 2px;
+    border-radius: 15px;
+  }
+  .profile-book-image:hover {
+    border-style: solid;
+    border-color: #FF6230;
+    border-width: 2px;
+    border-radius: 15px;
+  }
+
+  .profile-book-title {
+    margin-top: 5px;
+  }
+}
+
+/* Review Card */
+.review-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-color: #7669E9;
+  border-width: 2px;
+  border-radius: 15px;
+  gap: 10px;
+
+  .subtitle {
+    opacity: 75%;
+  }
+
+  .review-stars {
+    display: flex;
+    flex-direction: row;
+    color: #FF6230;
+  }
+
+  .review-buttons {
+    width: 50%;
+    background-color: #7669E9;
+    border-radius: 50px;
+    color: #FFFFFF;
+    border-color: #5E1AF4;
+    border-width: 2px;
+    border-style: solid;
+  }
+}
+
+/* ------ BOOKS ------ */
+/* all books */
+
+.all-books-page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+
+  .all-books-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  
+    .all-book-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; 
+      text-align: center; 
+      padding: 10px; 
+      
+      .book-image {
+        border-radius: 10px;
+        border-style: none;
+      }
+  
+      .book-image:hover {
+        border-style: solid;
+        border-color: #FF6230;
+        border-width: 3px;
+        box-shadow: rgba(255, 190, 152, .2) 0px 8px 24px;
+      }
+    }
+  }
+}
+
+/* Book Details Page */
+
+.book-details-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 20px;
+
+  .book-details-header-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .book-details-header {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    width: 100%;
+
+    .book-shelf-button {
+    background-color: #7669E9;
+    border-radius: 50px;
+    color: #FFFFFF;
+    border-color: #5E1AF4;
+    border-width: 2px;
+    }
+  }
+  .review-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Bookshelf Button and Modal*/ 
+.bookshelf-button {
+  background-color: #7669E9;
+  color: #FFFFFF;
+  border-color: #5E1AF4;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
 }
 
 .bookshelf-btn-selected {
   button {
-    background-color: blueviolet !important;
+  background-color: #7669E9;
+  color: #FFFFFF;
+  border-color: #5E1AF4;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
   }
-  }
+}
   
 .bookshelf-btn-notselected {
   button {
-    background-color: darkorange !important;
+  background-color: #FFBE98;
+  color: #FFFFFF;
+  border-color: #FF6230;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 25px;
   } 
+}
+
+.bookshelf-delete {
+  background-color: #FFFFFF;
+  border-color: #FF6230;
+  color: #FF6230;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.bookshelf-create-form {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .bookshelf-create-div {
+    Button {
+      background-color: #FFBE98;
+      color: #FFFFFF;
+      border-color: #FF6230;
+      border-width: 2px;
+      width: 100%;
+      border-radius: 25px;
+      }
+  }
+
+  
+}
+
+
+/* Review Form */ 
+.review-form-container {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    visibility: hidden;
+  }
+  
+}
+
+/* Shelf Details */
+.shelf-details-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 20px;
+
+  .shelf-books-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
 }

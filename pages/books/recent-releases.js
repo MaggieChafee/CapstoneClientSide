@@ -11,9 +11,9 @@ export default function RecentBooks() {
 
   return (
     <>
-      <div className="page-container">
+      <div className="all-books-page-container">
         <h1>Recent Releases</h1>
-        <div>
+        <div className="all-books-container">
           {recentBooks.map((book) => (
             <BookCard key={book.id} bookObj={book} />
           ))}
