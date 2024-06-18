@@ -25,20 +25,15 @@ function BookShelfButton({ shelfObj, onUpdate }) {
   const handleShow = () => setShow(true);
   const handlClose = () => setShow(false);
 
-  const settingText = () => {
+  const getEverything = () => {
     const payload = {
       bookId: id,
       userId: user.id,
     };
     shelfCheck(payload).then(setCurrentShelf);
     setShow(false);
-  };
-
-  const shelves = () => {
     getUsersShelves(user.id).then(setUserShelves);
-  };
 
-  const bookShelfId = () => {
     const getIdPayload = {
       bookId: Number(id),
       shelfId: currentShelf.id,
@@ -47,12 +42,6 @@ function BookShelfButton({ shelfObj, onUpdate }) {
   };
 
   useEffect(() => {
-    const getEverything = () => {
-      settingText();
-      shelves();
-      bookShelfId();
-    };
-
     if (user && id) {
       getEverything();
     }
@@ -74,9 +63,9 @@ function BookShelfButton({ shelfObj, onUpdate }) {
 
           <Modal.Body>
             {userShelves.map((shelf) => {
-              const shelfSelect = shelf.id === shelfObj.id ? 'bookshelf-btn-selected' : 'bookshelf-btn-notselected';
+              const isSelected = shelf.id === currentShelf.id ? 'bookshelf-btn-selected' : 'bookshelf-btn-notselected';
               return (
-                <BookShelfCard className={shelfSelect} key={shelf.id} shelfObj={shelf} currentShelf={currentShelf} onUpdate={settingText} />
+                <BookShelfCard className={isSelected} key={shelf.id} shelfObj={shelf} currentShelf={currentShelf} onUpdate={getEverything} />
               );
             })}
           </Modal.Body>

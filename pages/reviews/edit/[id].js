@@ -14,7 +14,7 @@ function EditReview() {
 
   return (
     <>
-      <div className="page-container">
+      <div className="review-form-container">
         <h1>Edit Review</h1>
         <ReviewForm reviewObj={editReview} />
       </div>

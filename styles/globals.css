@@ -21,6 +21,27 @@ body {
   background-color: #F8F3EA;
   margin-bottom: 5%;
 }
+/* ------ SIGN IN ------*/
+.sign-in-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+
+  .sign-in-left {
+    width: 40%
+  }
+  .sign-in-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%
+  }
+}
+
 /* ------ NAVBAR ------ */ 
 .sign-out-button {
   background-color: #7669E9;
@@ -28,6 +49,7 @@ body {
   border-color: #5E1AF4;
   border-width: 2px;
   border-radius: 25px;
+  border-style: solid;
 }
 
 /* ------ PROFILE ------ */ 
@@ -49,11 +71,15 @@ body {
     box-shadow: 10px 10px #FFBE98;
     
     .profile-header-left {
-      width: 25%;
+      display: flex; /* Add this */
+      justify-content: center; /* Add this */
+      align-items: center;
+      width: 25%; 
 
       .profile-image {
         border-radius: 50%;
-        justify-content: center;
+        align-items: center;
+        max-width: 100%;
       }
     }
     
@@ -114,7 +140,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 5px;
+    gap: 10px;
   }
 
   .profile-book-container {
@@ -157,7 +183,7 @@ body {
   .review-stars {
     display: flex;
     flex-direction: row;
-    color: #5E1AF4;
+    color: #FF6230;
   }
 
   .review-buttons {
@@ -338,4 +364,27 @@ body {
     visibility: hidden;
   }
   
+}
+
+/* Shelf Details */
+.shelf-details-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
+  box-shadow: 10px 10px #FFBE98;
+  gap: 20px;
+
+  .shelf-books-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
 }

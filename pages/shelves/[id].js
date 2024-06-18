@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getSingleShelf } from '../../api/shelfData';
-import BookCard from '../../components/cards/bookCard';
+import BookShelfDetailsCard from '../../components/cards/shelfDetailsBookCard';
 
 function ViewSingleShelf() {
   const [shelfDetails, setShelfDetails] = useState({});
@@ -19,12 +19,15 @@ function ViewSingleShelf() {
 
   return (
     <>
-      <h1>{shelfDetails.name}</h1>
-      <div>
-        {shelfDetails.bookShelves?.map((b) => (
-          <BookCard key={b.book.id} bookObj={b.book} />
-        ))}
+      <div className="shelf-details-container">
+        <h1>{shelfDetails.name}</h1>
+        <div className="shelf-books-container">
+          {shelfDetails.bookShelves?.map((b) => (
+            <BookShelfDetailsCard key={b.book.id} bookObj={b.book} onUpdate={shelf} />
+          ))}
+        </div>
       </div>
+
     </>
   );
 }

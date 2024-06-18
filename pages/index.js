@@ -43,7 +43,7 @@ function Home() {
             <div className="profile-header-left">
               <Image src={userDetails.imageUrl} alt="profile picture" className="profile-image" />
             </div>
-            <div className="profile-header-right">
+            <div>
               <h1>Hello {userDetails.username}! </h1>
               <p>Contact Info: {userDetails.email}</p>
             </div>

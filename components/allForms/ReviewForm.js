@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createReview, updateReview } from '../../api/reviewData';
 import { useAuth } from '../../utils/context/authContext';
-import { getSingleBook } from '../../api/bookData';
 
 const initialState = {
   comment: ' ',
@@ -16,21 +15,16 @@ function ReviewForm({ reviewObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(null);
-  const [book, setBook] = useState({});
+
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAuth();
-
-  const bookDetails = () => {
-    getSingleBook(id).then(setBook);
-  };
 
   useEffect(() => {
     if (reviewObj.id) {
       setFormInput(reviewObj);
       setUserRating(reviewObj.rating);
     }
-    bookDetails();
   }, [reviewObj.id, id]);
 
   const handleChange = (e) => {
@@ -67,8 +61,7 @@ function ReviewForm({ reviewObj }) {
 
   return (
     <>
-      <div className="review-form-container">
-        <h4>Review for {book.title}</h4>
+      <div>
         <Form onSubmit={handleSubmit}>
           <Form.Label htmlFor="inputPassword5">Rating</Form.Label>
           <div>
@@ -107,7 +100,7 @@ function ReviewForm({ reviewObj }) {
             onChange={handleChange}
           />
           <div style={{ height: '10px' }} />
-          <Button className="sign-out-button" type="submit">
+          <Button className="sign-out-button" variant="dark" type="submit">
             Submit
           </Button>
         </Form>

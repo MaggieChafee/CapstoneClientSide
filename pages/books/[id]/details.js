@@ -45,20 +45,12 @@ function ViewSingleBook() {
         setCheckShelf(false);
       }
     });
-  };
-
-  const reviews = () => {
     getReviewsByBookId(id).then(setBookReviews);
-  };
-
-  const rating = () => {
     getAverageRating(id).then(setBookRating);
   };
 
   useEffect(() => {
     getDetails();
-    reviews();
-    rating();
   }, [id]);
 
   return (
