@@ -1,4 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css2?family=Neuton&display=swap');
+
 
 html,
 body {
@@ -21,6 +23,11 @@ body {
   background-color: #F8F3EA;
   margin-bottom: 5%;
 }
+
+h1, h2, h3, h4 {
+  font-family: 'Neuton' !important;
+}
+
 /* ------ SIGN IN ------*/
 .sign-in-container {
   display: flex;
@@ -42,7 +49,6 @@ body {
   }
 }
 
-/* ------ NAVBAR ------ */ 
 .sign-out-button {
   background-color: #7669E9;
   color: #FFFFFF;
@@ -50,6 +56,40 @@ body {
   border-width: 2px;
   border-radius: 25px;
   border-style: solid;
+}
+
+/* ------ NAVBAR ------ */ 
+.navbar {
+  width: 100%;
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    max-width: 35%
+  }
+
+  .search-bar-div {
+    width: 60%
+  }
+
+  .sign-out-button-2 {
+    background-color: #7669E9;
+    color: #FFFFFF;
+    border-color: #5E1AF4;
+    border-width: 2px;
+    border-radius: 25px;
+    border-style: solid;
+    align-items: flex-end;
+  }
+}
+
+
+.search-bar {
+  max-width: 100%;
+  border-radius: 25px;
+  border-style: solid;
+  border-color: #FFBE98;
+  border-width: 2px;
 }
 
 /* ------ PROFILE ------ */ 
@@ -128,9 +168,11 @@ body {
   }
 
   .profile-bookshelf-button {
-    background-color: #FFBE98 !important;
+    background-color: #FFFFFF !important;
+    color: #FF6230;
     border-color: #FF6230;
     border-width: 2px;
+    border-radius: 10px;
   }  
 
   hr {

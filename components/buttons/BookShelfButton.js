@@ -48,7 +48,7 @@ function BookShelfButton({ shelfObj, onUpdate }) {
   }, [user, id]);
 
   const deleteThisBookShelf = () => {
-    deleteBookFromShelf(bookShelf.id).then(setShow(false)).then(() => onUpdate());
+    deleteBookFromShelf(Number(bookShelf.id)).then(setShow(false)).then(() => onUpdate());
   };
 
   const editIcon = <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} />;
