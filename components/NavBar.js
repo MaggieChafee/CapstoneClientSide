@@ -9,6 +9,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import SearchBar from './SearchBar';
 
 export default function NavBar() {
   return (
@@ -19,18 +20,27 @@ export default function NavBar() {
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link passHref href="/">
-              <Nav.Link>Home</Nav.Link>
-            </Link>
-            <Link passHref href="/books/all">
-              <Nav.Link>Browse Books</Nav.Link>
-            </Link>
-            <Link passHref href="/books/recent-releases">
-              <Nav.Link>Recent Releases</Nav.Link>
-            </Link>
-            <Button variant="dark" className="sign-out-button" onClick={signOut}>
+          <Nav className="navbar">
+            <div className="tabs">
+              {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
+              <Link passHref href="/">
+                <Nav.Link>Home</Nav.Link>
+              </Link>
+              <Link passHref href="/books/all">
+                <Nav.Link>Browse Books</Nav.Link>
+              </Link>
+              <Link passHref href="/books/recent-releases">
+                <Nav.Link>Recent Releases</Nav.Link>
+              </Link>
+            </div>
+            <div className="search-bar-div">
+              <SearchBar />
+            </div>
+            <Button
+              variant="dark"
+              className="sign-out-button-2"
+              onClick={signOut}
+            >
               Sign Out
             </Button>
           </Nav>

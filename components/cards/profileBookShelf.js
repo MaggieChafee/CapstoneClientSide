@@ -13,6 +13,7 @@ function ProfileBookShelf({ bookShelfObj }) {
     <div className="profile-bookshelf-card" style={{ height: '400px' }}>
       <div className="profile-bookshelf-header">
         <h3>{bookShelfObj.name}</h3>
+        <div style={{ width: '10px' }} />
         <Link href={`/shelves/${bookShelfObj.id}`} passHref>
           <Button className="profile-bookshelf-button" variant="dark">Show More</Button>
         </Link>

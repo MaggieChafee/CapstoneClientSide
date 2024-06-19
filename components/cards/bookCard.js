@@ -21,6 +21,7 @@ BookCard.propTypes = {
     title: PropTypes.string,
     imageUrl: PropTypes.string,
   }).isRequired,
+
 };
 
 export default BookCard;
