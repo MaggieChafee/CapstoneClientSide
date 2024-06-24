@@ -39,23 +39,26 @@ function RegistrationForm({ userObj }) {
   };
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" name="username" value={formInput.username} onChange={handleChange} placeholder="Choose a username." />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" name="email" value={formInput.email} onChange={handleChange} placeholder="Email" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Picture</Form.Label>
-        <Form.Control type="test" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} placeholder="Image Url" />
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-        Submit
-      </Button>
-    </Form>
+    <div>
+      <h4>Create a User Profile</h4>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" name="username" value={formInput.username} onChange={handleChange} placeholder="Choose a Username" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" name="email" value={formInput.email} onChange={handleChange} placeholder="Email" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Picture</Form.Label>
+          <Form.Control type="test" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} placeholder="Image Url" />
+        </Form.Group>
+        <Button variant="primary" type="submit" className="sign-in-button-2" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 }
 
