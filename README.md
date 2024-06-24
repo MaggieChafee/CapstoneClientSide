@@ -1,44 +1,42 @@
-# React/Next.js Django Auth Template
+# BiblioFile
 
-## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+Welcome to BiblioFile, your ultimate companion for managing and exploring your personal book collection. This full-stack application is designed to streamline your book tracking experience, offering a variety of shelves to organize your books, leave reviews, and discover your next favorite read.
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+## Overview
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+BiblioFile allows authenticated users to efficiently manage their digital library. Whether you want to add books to your shelves, move them between shelves, delete them, or manage reviews, BiblioFile has you covered.
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+## Features
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+- **Secure Access:** Enjoy peace of mind with user-specific data secured through Firebase Google Authentication.
+- **User Profile:** Navigate effortlessly between your shelves with a user-friendly profile landing page.
+- **Shelf Management:** Add, update, and delete books on personalized shelves created when you set up your profile.
+- **Review Management:** Add, update, and delete reviews for books you've read with ease.
+- **Book Details:** Access detailed book information, average ratings, and user reviews all in one place.
+- **Shelf Details:** View all the books on a single shelf in an organized, easy-to-navigate space.
 
+## Screenshots
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### User Profile
+<img width="650" alt="user profile screenshot" src="/public/UserProfile.png">
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+### Book Details
+<img width="650" alt="user profile screenshot" src="/public/BookDetails.png">
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+### Review Form
+<img width="650" alt="user profile screenshot" src="/public/ReviewForm.png">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Bookshelf Form
+<img width="650" alt="user profile screenshot" src="/public/BookShelfForm.png">
+
+## Server Side Information
+
+Interested in taking a look at the backend for this project? Take a look [here](https://github.com/MaggieChafee/CapstoneServerSide).<br/>
+
+Additionally, you can take a look at the base endpoints created for this application by checking out my Postman documentation [here](https://documenter.getpostman.com/view/28438730/2sA3QwapCv). 
+
+## ERD
+
+- [ERD](https://dbdiagram.io/d/BiblioFile-MVP-663fb7a69e85a46d55961fb4)
+
+<img alt="erd" src="/public/ERD.png">

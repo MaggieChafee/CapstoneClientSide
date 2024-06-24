@@ -79,7 +79,7 @@ function ViewSingleBook() {
       </div>
       <div style={{ height: '20px' }} />
       <div className="book-details-container">
-        <h2>Avarage Rating: {bookRating === 0 ? ('No Ratings Yet') : (`${bookRating}/5`)}</h2>
+        <h2>Average Rating: {bookRating === 0 ? ('No Ratings Yet') : (`${bookRating}/5`)}</h2>
         <div>
           {reviewCheck
             ? (<ReviewCard key={usersReview.id} reviewObj={usersReview} onUpdate={getDetails} />) : (<Link href={`/books/${id}/add-review`} passHref><Button className="sign-out-button" variant="dark">Leave a Review</Button></Link>)}
