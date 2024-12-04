@@ -6,6 +6,8 @@ Welcome to BiblioFile, your ultimate companion for managing and exploring your p
 
 BiblioFile allows authenticated users to efficiently manage their digital library. Whether you want to add books to your shelves, move them between shelves, delete them, or manage reviews, BiblioFile has you covered.
 
+View my live demo [here](https://www.loom.com/share/900e3b755497469f8f6879cc08e29c11?sid=51ab4364-3e07-43b0-a14c-61f66ddfd6a2). 
+
 ## Features
 
 - **Secure Access:** Enjoy peace of mind with user-specific data secured through Firebase Google Authentication.
